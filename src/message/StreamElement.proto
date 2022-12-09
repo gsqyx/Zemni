@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package Zemni_protobuf;
+
+enum StreamElementType {
+    STREAM_ELEMENT_TYPE_UNKNOWN = 0;
+    STREAM_ELEMENT_TYPE_RECORD = 1;
+    STREAM_ELEMENT_TYPE_WATERMARK = 2;
+    STREAM_ELEMENT_TYPE_SIGNAL_EOF = 3;
+    STREAM_ELEMENT_TYPE_OPERATOR_STOP_SIGNAL = 4;
+    STREAM_ELEMENT_TYPE_CHECKPOINT_BARRIER = 5;
+    STREAM_ELEMENT_TYPE_TIMESTAMP = 6;
+}
+
+message StreamElement {
+    int32 type = 1;
+    int64 id = 2;
+    int64 timestamp = 3;
+    bytes key = 4;
+    bytes value1 = 5;
+    bytes value2 = 6;
+    int32 int_value = 7;
+    //    int32 queue_id = 8;
+}
+
+message StreamElements {
+    repeated StreamElement element = 1;
+    int32 queue_id = 2;
+}
